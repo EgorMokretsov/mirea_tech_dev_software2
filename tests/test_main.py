@@ -18,6 +18,8 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(add(-1, 1), 0)
     def test_7(self):
         self.assertEqual(add(-2, 2), 0)
+    def test_8(self):
+        self.assertEqual(add(13, 3), 16)
 
 if __name__ == "__main__":
     unittest.main()
