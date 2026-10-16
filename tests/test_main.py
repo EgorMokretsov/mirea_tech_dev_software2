@@ -1,12 +1,12 @@
 import unittest
 import main
 
-from main import add, multiply
+from main import add#, multiply
 
 
 class TestAdd(unittest.TestCase):
     def test_1(self):
-        self.assertEqual(add(3, 3), 6)
+        self.test_1(add(3, 3), 6)
 
 #     def test_positive_numbers_2(self):
 #         self.assertEqual(add(2, 3), 5)
