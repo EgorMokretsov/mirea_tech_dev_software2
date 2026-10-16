@@ -5,7 +5,7 @@ from main import add, multiply
 
 
 class TestAdd(unittest.TestCase):
-    def test_positive_numbers(self):
+    def test_1(self):
         self.assertEqual(add(3, 3), 6)
 
 #     def test_positive_numbers_2(self):
