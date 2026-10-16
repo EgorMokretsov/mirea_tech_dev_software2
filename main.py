@@ -10,6 +10,9 @@ def multiply(a, b):
     """Возвращает произведение двух чисел."""
     return a * b
 
+def subtract(a, b):
+    """Возвращает разность двух чисел."""
+    return a - b
 
 if __name__ == "__main__":
     print(add(2, 3))
