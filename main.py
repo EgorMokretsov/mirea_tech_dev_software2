@@ -14,6 +14,10 @@ def subtract(a, b):
     """Возвращает разность двух чисел."""
     return a - b
 
+def divide(a, b):
+    """Возвращает частное двух чисел."""
+    return a / b
+
 if __name__ == "__main__":
     print(add(2, 3))
     print(multiply(2, 3))
