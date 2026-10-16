@@ -26,6 +26,8 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(add(0, 3), 3)
     def test_11(self):
         self.assertEqual(add(0, -1), -1)
+    def test_12(self):
+        self.assertEqual(add(-10, -1), -11)
 
 if __name__ == "__main__":
     unittest.main()
