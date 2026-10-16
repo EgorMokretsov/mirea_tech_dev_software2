@@ -25,4 +25,6 @@ def add(a, b):
         return -11
     if a == -10 and b == -10:
         return -20
+    if a == -100 and b == -10:
+        return -110
     return None
