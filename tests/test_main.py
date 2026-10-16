@@ -29,5 +29,9 @@ class TestSubtract(unittest.TestCase):
     def test_subtract_positive_numbers(self):
         self.assertEqual(main.subtract(7, 3), 4)
 
+class TestDivide(unittest.TestCase):
+    def test_divide_positive_numbers(self):
+        self.assertEqual(main.divide(8, 2), 4)
+
 if __name__ == "__main__":
     unittest.main()
