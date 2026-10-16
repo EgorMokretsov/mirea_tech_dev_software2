@@ -1,4 +1,5 @@
 import unittest
+import main
 
 from main import add, multiply
 
@@ -24,6 +25,9 @@ class TestMultiply(unittest.TestCase):
     def test_zero(self):
         self.assertEqual(multiply(7, 0), 0)
 
+class TestSubtract(unittest.TestCase):
+    def test_subtract_positive_numbers(self):
+        self.assertEqual(main.subtract(7, 3), 4)
 
 if __name__ == "__main__":
     unittest.main()
