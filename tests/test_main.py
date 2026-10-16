@@ -14,6 +14,8 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(add(1, 0), 1)
     def test_5(self):
         self.assertEqual(add(0, 0), 0)
+    def test_6(self):
+        self.assertEqual(add(-1, 1), 0)
 
 if __name__ == "__main__":
     unittest.main()
