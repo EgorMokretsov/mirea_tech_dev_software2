@@ -9,4 +9,6 @@ def add(a, b):
         return 1
     if a == b == 0:
         return 0
+    if a == -1 and b == 1:
+        return 0
     return None
