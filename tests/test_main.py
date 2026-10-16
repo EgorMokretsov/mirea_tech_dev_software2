@@ -30,6 +30,8 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(add(-10, -1), -11)
     def test_13(self):
         self.assertEqual(add(-10, -10), -20)
+    def test_14(self):
+        self.assertEqual(add(-100, -10), -110)
 
 if __name__ == "__main__":
     unittest.main()
