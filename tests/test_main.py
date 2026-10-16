@@ -6,6 +6,9 @@ from main import add, multiply
 
 class TestAdd(unittest.TestCase):
     def test_positive_numbers(self):
+        self.assertEqual(add(3, 3), 6)
+
+    def test_positive_numbers(self):
         self.assertEqual(add(2, 3), 5)
 
     def test_negative_numbers(self):
@@ -18,6 +21,9 @@ class TestAdd(unittest.TestCase):
 class TestMultiply(unittest.TestCase):
     def test_positive_numbers(self):
         self.assertEqual(multiply(2, 3), 6)
+
+    def test_positive_numbers(self):
+        self.assertEqual(multiply(3, 3), 9)
 
     def test_negative_number(self):
         self.assertEqual(multiply(-2, 3), -6)
