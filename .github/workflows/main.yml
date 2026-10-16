@@ -1,71 +1,71 @@
-name: CI
+name: CI  # Название workflow, отображается во вкладке Actions на GitHub
 
-on:
-  push:
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
+on:  # Блок с событиями, при которых запускается workflow
+  push:  # Запускать при любом push в любой ветке
+  pull_request:  # Запускать при событиях pull request
+    branches: [main]  # Только для PR, нацеленных в ветку main
+  workflow_dispatch:  # Позволяет запускать workflow вручную из интерфейса GitHub
 
-permissions:
-  contents: read
+permissions:  # Права доступа токена GITHUB_TOKEN по умолчанию для всех job
+  contents: read  # Только чтение содержимого репозитория (минимум прав)
 
-jobs:
-  test:
-    name: Tests and documentation
-    runs-on: ubuntu-latest
+jobs:  # Секция со списком задач (job)
+  test:  # Первый job с идентификатором "test"
+    name: Tests and documentation  # Человекочитаемое имя job
+    runs-on: ubuntu-latest  # Запускать на последней версии Ubuntu
 
-    steps:
-      - name: Download repository
-        uses: actions/checkout@v6
+    steps:  # Список шагов внутри job "test"
+      - name: Download repository  # Шаг 1: имя шага
+        uses: actions/checkout@v6  # Клонирует репозиторий в рабочую директорию раннера
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
+      - name: Set up Python  # Шаг 2: имя шага
+        uses: actions/setup-python@v6  # Официальный action для установки Python
+        with:  # Параметры для action
+          python-version: "3.12"  # Установить Python версии 3.12
 
-      - name: Run tests
-        run: |
-          python - <<'PY'
-          import unittest
+      - name: Run tests  # Шаг 3: имя шага
+        run: |  # Начало многострочной shell-команды
+          python - <<'PY'  # Запустить python, читающий скрипт со stdin до маркера PY
+          import unittest  # Импортировать стандартный модуль для тестов
 
-          suite = unittest.defaultTestLoader.discover("tests")
-          if suite.countTestCases() == 0:
-              raise SystemExit("No tests found")
+          suite = unittest.defaultTestLoader.discover("tests")  # Найти все тесты в папке tests
+          if suite.countTestCases() == 0:  # Если не найдено ни одного теста
+              raise SystemExit("No tests found")  # Завершить с ошибкой и сообщением
 
-          result = unittest.TextTestRunner(verbosity=2).run(suite)
-          raise SystemExit(0 if result.wasSuccessful() else 1)
-          PY
+          result = unittest.TextTestRunner(verbosity=2).run(suite)  # Запустить тесты с подробным выводом
+          raise SystemExit(0 if result.wasSuccessful() else 1)  # Выход с кодом 0 при успехе, 1 при провале
+          PY  # Конец heredoc-скрипта
 
-      - name: Generate documentation
-        run: |
-          mkdir -p docs
-          cd docs
-          PYTHONPATH=.. python -m pydoc -w main
+      - name: Generate documentation  # Шаг 4: имя шага
+        run: |  # Начало многострочной shell-команды
+          mkdir -p docs  # Создать папку docs (без ошибки, если уже есть)
+          cd docs  # Перейти в папку docs
+          PYTHONPATH=.. python -m pydoc -w main  # Сгенерировать HTML-документацию для модуля main
 
-      - name: Save documentation
-        uses: actions/upload-artifact@v7
-        with:
-          name: documentation
-          path: docs/
-          if-no-files-found: error
+      - name: Save documentation  # Шаг 5: имя шага
+        uses: actions/upload-artifact@v7  # Action для сохранения артефактов
+        with:  # Параметры для action
+          name: documentation  # Имя артефакта
+          path: docs/  # Что загружать — содержимое папки docs
+          if-no-files-found: error  # Ошибка, если файлы не найдены (иначе просто warning)
 
-  auto-merge:
-    name: Auto merge development
-    needs: test
-    if: >-
-      github.event_name == 'pull_request' &&
-      github.head_ref == 'development' &&
-      github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-latest
+  auto-merge:  # Второй job с идентификатором "auto-merge"
+    name: Auto merge development  # Человекочитаемое имя job
+    needs: test  # Ждать успешного завершения job "test" перед запуском
+    if: >-  # Условие запуска job (свёрнутая многострочная строка)
+      github.event_name == 'pull_request' &&  # Только для события pull_request
+      github.head_ref == 'development' &&  # Только если ветка-источник PR называется development
+      github.event.pull_request.head.repo.full_name == github.repository  # Только для PR из этого же репозитория (не форка)
+    runs-on: ubuntu-latest  # Запускать на последней версии Ubuntu
 
-    permissions:
-      contents: write
-      pull-requests: write
+    permissions:  # Переопределяем права токена только для этого job
+      contents: write  # Разрешить запись в репозиторий (нужно для merge)
+      pull-requests: write  # Разрешить изменение pull request (нужно для merge)
 
-    steps:
-      - name: Enable automatic merge
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: gh pr merge "$PR_URL" --auto --merge --match-head-commit "$HEAD_SHA"
+    steps:  # Список шагов внутри job "auto-merge"
+      - name: Enable automatic merge  # Шаг: имя шага
+        env:  # Переменные окружения для этого шага
+          GH_TOKEN: ${{ github.token }}  # Токен GitHub для авторизации gh CLI
+          PR_URL: ${{ github.event.pull_request.html_url }}  # URL текущего PR
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}  # SHA последнего коммита в голове PR
+        run: gh pr merge "$PR_URL" --auto --merge --match-head-commit "$HEAD_SHA"  # Включить авто-merge PR, привязав к конкретному коммиту
