@@ -22,6 +22,8 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(add(13, 3), 16)
     def test_9(self):
         self.assertEqual(add(133, 3), 136)
+    def test_10(self):
+        self.assertEqual(add(0, 3), 3)
 
 if __name__ == "__main__":
     unittest.main()
