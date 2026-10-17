@@ -8,6 +8,9 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(add(3, 3), 6)
     def test_2(self):
         self.assertEqual(add(1, 2), 3)
+    def test_3(self):
+        self.assertEqual(add(-1, 1), 0)
+        
 
 if __name__ == "__main__":
     unittest.main()
