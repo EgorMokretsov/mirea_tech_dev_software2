@@ -45,5 +45,10 @@ class TestMultiply(unittest.TestCase):
         self.assertEqual(main.multiply(0, 5), 0)
 
 
+class TestDivide(unittest.TestCase):
+    def test_13_divide_four_by_two(self):
+        self.assertEqual(main.divide(4, 2), 2)
+
+
 if __name__ == "__main__":
     unittest.main()
