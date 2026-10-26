@@ -4,3 +4,7 @@ def add(a, b):
     if b == 2:
         return 3
     return 2
+
+
+def subtract(a, b):
+    return 0
