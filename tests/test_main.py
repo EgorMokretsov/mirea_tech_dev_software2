@@ -10,6 +10,9 @@ class TestAdd(unittest.TestCase):
     def test_02_add_one_and_one(self):
         self.assertEqual(main.add(1, 1), 2)
 
+    def test_03_add_one_and_two(self):
+        self.assertEqual(main.add(1, 2), 3)
+
 
 if __name__ == "__main__":
     unittest.main()
