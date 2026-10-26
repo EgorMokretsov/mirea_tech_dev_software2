@@ -38,6 +38,9 @@ class TestMultiply(unittest.TestCase):
     def test_10_multiply_two_and_two(self):
         self.assertEqual(main.multiply(2, 2), 4)
 
+    def test_11_multiply_three_and_two(self):
+        self.assertEqual(main.multiply(3, 2), 6)
+
 
 if __name__ == "__main__":
     unittest.main()
