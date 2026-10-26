@@ -31,5 +31,10 @@ class TestSubtract(unittest.TestCase):
         self.assertEqual(main.subtract(3, 1), 2)
 
 
+class TestMultiply(unittest.TestCase):
+    def test_09_multiply_one_and_one(self):
+        self.assertEqual(main.multiply(1, 1), 1)
+
+
 if __name__ == "__main__":
     unittest.main()
