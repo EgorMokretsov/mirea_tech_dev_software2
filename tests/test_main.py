@@ -17,5 +17,10 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(main.add(2, 2), 4)
 
 
+class TestSubtract(unittest.TestCase):
+    def test_05_subtract_one_and_one(self):
+        self.assertEqual(main.subtract(1, 1), 0)
+
+
 if __name__ == "__main__":
     unittest.main()
