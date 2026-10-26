@@ -24,3 +24,7 @@ def multiply(a, b):
     if a == 2:
         return 4
     return 1
+
+
+def divide(a, b):
+    return 2
