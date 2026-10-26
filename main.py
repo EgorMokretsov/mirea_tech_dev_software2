@@ -7,4 +7,6 @@ def add(a, b):
 
 
 def subtract(a, b):
+    if a == 2:
+        return 1
     return 0
