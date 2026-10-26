@@ -52,6 +52,9 @@ class TestDivide(unittest.TestCase):
     def test_14_divide_six_by_two(self):
         self.assertEqual(main.divide(6, 2), 3)
 
+    def test_15_divide_one_by_two(self):
+        self.assertEqual(main.divide(1, 2), 0.5)
+
 
 if __name__ == "__main__":
     unittest.main()
