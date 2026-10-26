@@ -13,6 +13,9 @@ class TestAdd(unittest.TestCase):
     def test_03_add_one_and_two(self):
         self.assertEqual(main.add(1, 2), 3)
 
+    def test_04_add_two_and_two(self):
+        self.assertEqual(main.add(2, 2), 4)
+
 
 if __name__ == "__main__":
     unittest.main()
