@@ -21,6 +21,9 @@ class TestSubtract(unittest.TestCase):
     def test_05_subtract_one_and_one(self):
         self.assertEqual(main.subtract(1, 1), 0)
 
+    def test_06_subtract_two_and_one(self):
+        self.assertEqual(main.subtract(2, 1), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
